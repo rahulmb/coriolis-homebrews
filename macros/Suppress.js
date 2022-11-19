@@ -15,7 +15,15 @@ function increaseStress(actor, stress) {
     console.log(`New stress ${mp.value}`)
 }
 
+function _hasEffect(token, effectId) {
+    effect = token.actor.effects.find(eff => eff.getFlag("core", "statusId").includes(effectId))
+    return effect != null & effect != undefined
+}
+
 function _setEffect(token, effectId, state) {
+    if (state && _hasEffect(token, effectId)) {
+        return
+    }
     token.toggleEffect(CONFIG.statusEffects.find(eff => eff.id.includes(effectId)), { active: state })
 }
 
@@ -46,12 +54,12 @@ canvas.tokens.controlled.forEach(t => {
         case 7:
         case 8:
             effectMessage += "Suppressed: Suffer 1 Stress, lose your next FAST action"
-            _setEffect(token, EFFECTS.skipFastAction)
+            _setEffect(token, EFFECTS.skipFastAction, true)
             increaseStress(t.actor, 1)
             break
         default:
             effectMessage += "Pinned Down: Suffer 1 Stress, lose your next SLOW action"
-            _setEffect(token, EFFECTS.skipSlowAction)
+            _setEffect(token, EFFECTS.skipSlowAction, true)
             increaseStress(t.actor, 1)
     }
     ChatMessage.create({
