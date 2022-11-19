@@ -1,3 +1,8 @@
+const EFFECTS = {
+    skipFastAction: "skipFastAction",
+    skipSlowAction: "skipSlowAction",
+  }
+
 if (!canvas.tokens.controlled || canvas.tokens.controlled == 0) {
     ui.notifications.error("No token selected")
     return
@@ -8,6 +13,10 @@ function increaseStress(actor, stress) {
     var newStress = mp.value - stress
     mp.value = newStress < mp.min ? mp.min : newStress
     console.log(`New stress ${mp.value}`)
+}
+
+function _setEffect(token, effectId, state) {
+    token.toggleEffect(CONFIG.statusEffects.find(eff => eff.id.includes(effectId)), { active: state })
 }
 
 canvas.tokens.controlled.forEach(t => {
@@ -37,10 +46,12 @@ canvas.tokens.controlled.forEach(t => {
         case 7:
         case 8:
             effectMessage += "Suppressed: Suffer 1 Stress, lose your next FAST action"
+            _setEffect(token, EFFECTS.skipFastAction)
             increaseStress(t.actor, 1)
             break
         default:
             effectMessage += "Pinned Down: Suffer 1 Stress, lose your next SLOW action"
+            _setEffect(token, EFFECTS.skipSlowAction)
             increaseStress(t.actor, 1)
     }
     ChatMessage.create({
