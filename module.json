@@ -19,7 +19,7 @@
         }
     ],
     "esmodules": [
-        "./config.js"
+        "coriolis-reloaded/config.js"
     ],
     "minimumCoreVersion": 10,
     "compatibility": {
@@ -42,7 +42,7 @@
         {
             "lang": "en",
             "name": "English",
-            "path": "lang/en.json"
+            "path": "coriolis-reloaded/en.json"
         }
     ],
     "url": "https://github.com/rahulmb/foundry-coriolis-reloaded",
