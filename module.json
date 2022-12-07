@@ -1,0 +1,51 @@
+{
+    "id": "CoriolisReloaded",
+    "name": "CoriolisReloaded",
+    "title": "Coriolis Reloaded",
+    "description": "Alternative rules for Coriolis",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Rahul Bhandari"
+        },
+        {
+            "name": "Austin Dorsey"
+        },
+        {
+            "name": "mrg67"
+        },
+        {
+            "name": "PotatoJedi"
+        }
+    ],
+    "esmodules": [
+        "./config.js"
+    ],
+    "minimumCoreVersion": 10,
+    "compatibility": {
+        "minimum": 10,
+        "verified": "10"
+    },
+    "relationships": {
+        "systems": [
+            {
+                "id": "yzecoriolis",
+                "type": "system",
+                "manifest": "https://github.com/winks-vtt/yze-coriolis/blob/master/system.json",
+                "compatibility": {
+                    "verified": "3.0.2"
+                }
+            }
+        ]
+    },
+    "languages": [
+        {
+            "lang": "en",
+            "name": "English",
+            "path": "lang/en.json"
+        }
+    ],
+    "url": "https://github.com/rahulmb/foundry-coriolis-reloaded",
+    "manifest": "https://github.com/rahulmb/foundry-coriolis-reloaded/blob/main/module.json",
+    "download": "https://github.com/rahulmb/foundry-coriolis-reloaded/master.zip"
+}
